@@ -15,6 +15,7 @@ def wallet(wallet_id):
         for x in diccionario:
             stream = os.popen("zabbix_sender -z 54.221.75.201    -s '"+str(x)+"' -k application.hash -o '"+str(diccionario[x])+"'")
             output = stream.read()
+            print("Wallet: "+str(x)+" Hash: "+str(diccionario[x]))
             salida[x] = diccionario[x]
             diccionario[x] = int(0)
         return salida
