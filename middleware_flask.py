@@ -6,7 +6,7 @@ import os
 
 app = Flask(__name__)
 
-
+cantidad_envios={}
 diccionario={}
 salida={}
 @app.route('/wallet/<wallet_id>', methods = ['GET', 'POST'])
