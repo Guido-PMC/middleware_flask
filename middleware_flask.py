@@ -15,7 +15,7 @@ def wallet(wallet_id):
         for x in diccionario:
             stream = os.popen("zabbix_sender -z 54.221.75.201    -s '"+str(x)+"' -k application.hash -o '"+str(diccionario[x])+"'")
             output = stream.read()
-            print("Wallet: "+str(x)+" Hash: "+str(diccionario[x]))
+            print("Wallet: "+str(x)+" Hash: "+str(diccionario[x])+" Cantidad envios: "+str(cantidad_envios[x]))
             salida[x] = diccionario[x]
             diccionario[x] = int(0)
         return salida
@@ -25,6 +25,11 @@ def wallet(wallet_id):
             diccionario[wallet_id] = int(diccionario[wallet_id]) + int(data["value"])
         except Exception as e:
             diccionario[wallet_id] = int(data["value"])
+        try:
+            cantidad_envios[wallet_id] = int(cantidad_envios[wallet_id]) + 1
+        except Exception as e:
+            cantidad_envios[wallet_id] = 1
+
         return str(diccionario[wallet_id])
 if __name__ == '__main__':
    app.run(host= '0.0.0.0')
