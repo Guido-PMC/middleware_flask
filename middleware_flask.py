@@ -18,6 +18,7 @@ def wallet(wallet_id):
             print("Wallet: "+str(x)+" Hash: "+str(diccionario[x])+" Cantidad envios: "+str(cantidad_envios[x]))
             salida[x] = diccionario[x]
             diccionario[x] = int(0)
+            cantidad_envios[x] = int(0)
         return salida
     if request.method == 'POST':
         data = request.json # a multidict containing POST data
