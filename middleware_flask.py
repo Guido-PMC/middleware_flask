@@ -24,12 +24,16 @@ def wallet(wallet_id):
         data = request.json # a multidict containing POST data
         try:
             diccionario[wallet_id] = int(diccionario[wallet_id]) + int(data["value"])
+            print("Wallet: "+wallet_id+" Hash: "+data["value"])
         except Exception as e:
             diccionario[wallet_id] = int(data["value"])
+            print("Wallet: "+wallet_id+" Hash: "+data["value"])
         try:
             cantidad_envios[wallet_id] = int(cantidad_envios[wallet_id]) + 1
+            print("Wallet: "+wallet_id+" Hash: "+data["value"])
         except Exception as e:
             cantidad_envios[wallet_id] = 1
+            print("Wallet: "+wallet_id+" Hash: "+data["value"])
 
         return str(diccionario[wallet_id])
 if __name__ == '__main__':
