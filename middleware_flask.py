@@ -30,10 +30,8 @@ def wallet(wallet_id):
             print("Wallet: "+wallet_id+" Hash: "+data["value"])
         try:
             cantidad_envios[wallet_id] = int(cantidad_envios[wallet_id]) + 1
-            print("Wallet: "+wallet_id+" Hash: "+data["value"])
         except Exception as e:
             cantidad_envios[wallet_id] = 1
-            print("Wallet: "+wallet_id+" Hash: "+data["value"])
 
         return str(diccionario[wallet_id])
 if __name__ == '__main__':
