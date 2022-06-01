@@ -24,7 +24,7 @@ def wallet(wallet_id):
     if request.method == 'POST':
         data = request.json # a multidict containing POST data
         try:
-            hostname_minero = data.keys()
+            hostname_minero = next(iter(data))
             diccionario[wallet_id] = int(diccionario[wallet_id]) + int(data[hostname_minero])
             print("Wallet: "+wallet_id+" Hash: "+data[hostname_minero]+" Hostname: "+hostname_minero[:5])
             #1#diccionario[wallet_id] = int(diccionario[wallet_id]) + int(data["value"])
