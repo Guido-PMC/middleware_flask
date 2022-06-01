@@ -24,15 +24,20 @@ def wallet(wallet_id):
     if request.method == 'POST':
         data = request.json # a multidict containing POST data
         try:
-            diccionario[wallet_id] = int(diccionario[wallet_id]) + int(data["value"])
-            print("Wallet: "+wallet_id+" Hash: "+data["value"])
+            hostname_minero = data.keys()
+            diccionario[wallet_id] = int(diccionario[wallet_id]) + int(data[hostname_minero])
+            print("Wallet: "+wallet_id+" Hash: "+data[hostname_minero]+" Hostname: "+hostname_minero[:5])
+            #1#diccionario[wallet_id] = int(diccionario[wallet_id]) + int(data["value"])
+            #1#print("Wallet: "+wallet_id+" Hash: "+data["value"])
         except Exception as e:
-            diccionario[wallet_id] = int(data["value"])
-            print("Wallet: "+wallet_id+" Hash: "+data["value"])
+            diccionario[wallet_id] = int(data[hostname_minero])
+            print("Wallet: "+wallet_id+" Hash: "+data[hostname_minero]+" Hostname: "+hostname_minero[:5])
+            #1#diccionario[wallet_id] = int(data["value"])
+            #1#print("Wallet: "+wallet_id+" Hash: "+data["value"])
         try:
-            cantidad_envios[wallet_id] = int(cantidad_envios[wallet_id]) + 1
+            cantidad_envios[wallet_id] = cantidad_envios[wallet_id] + " " + hostname_minero[:5]
         except Exception as e:
-            cantidad_envios[wallet_id] = 1
+            cantidad_envios[wallet_id] = hostname_minero[:5]
 
         return str(diccionario[wallet_id])
 if __name__ == '__main__':
